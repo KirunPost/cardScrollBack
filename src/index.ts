@@ -1,6 +1,6 @@
 import express, {Request, Response} from "express";
 import cors from "cors";
-import getRandomSumbool from "./components/compHelp/randomF";
+import getRandomSumbool from "./components/randomF";
 
 const app = express();
 app.use(express.json());
@@ -19,12 +19,12 @@ let listItems: Array<itemForList> = [];
 let searchlistItems: Array<itemForList> = [];
 
 let timeGen = setInterval(()=>{
-    if(listItems.length>=1000000){
+    if(listItems.length>=2000){
         clearInterval(timeGen);
         return;
     }
 
-    let genArr = Array.from({ length: 2000 }, (v, index) => ({
+    let genArr = Array.from({ length: 200 }, (v, index) => ({
         orderNumber: index+1+counterPick,
         value: 'Запись'+(index+1+counterPick),
         value2: Array.from({ length: 7 },()=>{ return alth[getRandomSumbool(11)] }).join(''),
