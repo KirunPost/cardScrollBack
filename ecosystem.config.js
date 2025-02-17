@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "go-scroll-back",
       script: "yarn",
-      args: "dev",
+      args: "run start",
       watch: true,
       mode: "fork",
       interpreter: "node",
