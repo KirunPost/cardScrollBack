@@ -24,7 +24,7 @@ let timeGen = setInterval(() => {
         return;
     }
 
-    let genArr = Array.from({ length: 2000 }, (v, index) => ({
+    let genArr = Array.from({ length: 3000 }, (v, index) => ({
         orderNumber: index + 1 + counterPick,
         value: 'Запись' + (index + 1 + counterPick),
         value2: Array.from({ length: 7 }, () => { return alth[getRandomSumbool(11)] }).join(''),
@@ -32,7 +32,7 @@ let timeGen = setInterval(() => {
     }));
     listItems = [...listItems, ...genArr];
     counterPick = listItems.length;
-}, 1000);
+}, 900);
 
 
 app.use(cors());
@@ -55,10 +55,13 @@ app.post('/search', (req: Request, res: Response) => {
                 && (req.body.messageShow ? elem.selected === true : true)
         });
     } else {
-        const foundItem = listItems.find((elem: any) => {
-            return (elem.orderNumber.toString()).includes(reqBoM)
-        });
-        searchlistItems = foundItem ? [foundItem] : [];
+       // const foundItem = listItems.find((elem: any) => {
+       //     return (elem.orderNumber.toString()).includes(reqBoM)
+       // });
+       // searchlistItems = foundItem ? [foundItem] : [];
+       searchlistItems = listItems.filter((elem: any) => {
+             return (elem.orderNumber.toString()).includes(reqBoM)
+         });
     }
     //console.log(searchlistItems.length)
     let needData = searchlistItems.slice(0, 20);
